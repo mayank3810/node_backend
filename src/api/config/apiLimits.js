@@ -1,5 +1,4 @@
 import rateLimit from 'express-rate-limit'
-import app from '../app';
 
 const defaultLimiter = rateLimit({
 	windowMs: 1 * 60 * 1000, // 1 minutes
@@ -25,6 +24,4 @@ const createAccountLimiter = rateLimit({
 	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 })
 
-app.use(defaultLimiter);
-app.use('/api', apiLimiter);
-app.use('/api/users/createAccount', createAccountLimiter);
+export {defaultLimiter , apiLimiter , createAccountLimiter}

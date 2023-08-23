@@ -4,10 +4,11 @@ import { handleResponse } from "../../helpers/responseHandler.js";
 
 const getAllUsersApi = catchAsync(async (req,res) => {
     logger.info("Inside getAllUsersApi Controller");
+    // app.get('/ip', (request, response) => response.send(request.ip))
 
     return handleResponse({
         res,
-        data:null,
+        data:req.ip,
     })
 
 });
