@@ -46,7 +46,7 @@ const handleHeaderResponse = ({
 };
 const unAuthorized = (res) => {
 	res.status(401).send({
-		msg: "Unauthorized! you're not authorized for this route!",
+		msg: "Unauthorized! Please provide a valid auth token",
 	});
 };
 

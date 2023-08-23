@@ -9,3 +9,5 @@ const comparePassword = (password, passwordHash) => {
     const result = bcrypt.compareSync(password, passwordHash);
     return result;
 }
+
+export { hashPassword, comparePassword };
