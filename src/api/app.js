@@ -23,9 +23,11 @@ app.use(express.json({ limit: config.fileSizeLimit }));
 app.use(express.urlencoded({ limit: config.fileSizeLimit, extended: false }));
 app.use(mongoSanitize());
 app.use(cors(corsOptions));
+
+// find local ip to set numberOfProxy in config
 app.get(config.apiVersionUrl, (req,res) => {
 	logger.info('Api endpoint called');
-    res.send(200)
+    res.send({yourIp:req.ip})
 });
 
 
