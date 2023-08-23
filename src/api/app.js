@@ -2,16 +2,14 @@ import express from 'express';
 import globalErrorHandler from './helpers/globalErrorHandler.js';
 import logger from './config/logger.js';
 import { handleError } from './helpers/responseHandler.js';
+import router from './components/index.js';
+import config from './config/config.js'
 
 const app = express();
 
-// const limiter = rateLimit({
-//     max: 999999999,
-//     windowMs: 60 * 60 * 1000,
-//     message: 'Too many requests from this IP, please try again in an hour!',
-// });
 
-// app.use('/api', limiter);
+app.use(config.apiVersionUrl, router);
+
 app.all('*', (req, res, next) => {
     next(
         handleError({
@@ -24,8 +22,8 @@ app.all('*', (req, res, next) => {
 
 app.use(globalErrorHandler);
 
-app.listen(3001,()=>{
-    logger.info(`Listening on ${3001}`)
+app.listen(config.appPort,()=>{
+    logger.info(`Listening on ${config.appPort}`)
 })
 
 export default app
