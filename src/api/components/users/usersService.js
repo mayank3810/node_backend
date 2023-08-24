@@ -11,7 +11,7 @@ import Users from "./usersModel.js";
 
 const createUser = async (name, email, username, password, role) => {
     logger.info('Inside createUser Service');
-
+    try {
     const foundUser = await findOne(Users, { email });
     if (foundUser) {
         return {
@@ -19,6 +19,13 @@ const createUser = async (name, email, username, password, role) => {
             error:  message.USER_ALREADY_EXIST,
         };
     }
+    } catch (error) {
+        return {
+            status: 'ERROR',
+            error:  message.SOMETHING_WENT_WRONG,
+        };
+    }
+   
     //to do validation
 
     const hashedPassword = hashPassword(password)
