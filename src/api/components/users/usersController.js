@@ -17,8 +17,6 @@ const getAllUsersApi = catchAsync(async (req,res) => {
 
 const createUserApi = catchAsync(async (req,res) => {
     logger.info("Inside createUserApi Controller");
-    const body = req.body
-    console.log(body)
     const {name,email,username,password,role} = req.body;
     
     const result = await createUser(name,email,username,password,role);
