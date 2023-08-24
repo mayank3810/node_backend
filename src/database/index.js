@@ -2,7 +2,13 @@ import mongoose from 'mongoose';
 import logger from '../api/config/logger.js';
 import config from '../api/config/config.js';
 
-mongoose.connect(config.db.str, config.db.options);
+try {
+	mongoose.connect(config.db.str, config.db.options);
+} catch (error) {
+	logger.debug(`Mongoose connection error for master DB: ${error}`);
+}
+
+
 
 const db = mongoose.connection;
 // CONNECTION EVENTS
