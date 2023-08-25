@@ -2,9 +2,9 @@ import createUsersSchema from "../../../database/models/userModel.js";
 
 const userSchema = {
     name: { type: String },
-    userName: { type: String },
+    username: { type: String },
     email: { type: String },
-    password: { type: String },
+    password: { type: String, select: false },
     mobileNumber: { type: String },
     profilePic: {
         type:{

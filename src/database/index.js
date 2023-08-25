@@ -35,12 +35,18 @@ db.on('reconnected', () => {
 });
 // If the Node process ends, close the Mongoose connection
 process.on('SIGINT', () => {
-	db.close(() => {
+	db.close().then(()=>{
+		() => {
+			logger.debug(
+				'Mongoose connection disconnected for master DB through app termination'
+			);
+			// eslint-disable-next-line no-process-exit
+			process.exit(0);
+		}
+	}).catch((err)=>{
 		logger.debug(
-			'Mongoose connection disconnected for master DB through app termination'
+			'Error terminating mongoose connection for master DB through app termination'
 		);
-		// eslint-disable-next-line no-process-exit
-		process.exit(0);
 	});
 });
 
